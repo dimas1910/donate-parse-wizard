@@ -8,11 +8,11 @@ import { toast } from '@/hooks/use-toast';
 import { Heart, Upload, CheckCircle } from 'lucide-react';
 
 const Index = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [extractedData, setExtractedData] = useState<Record<string, any> | null>(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [extractedData, setExtractedData] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleFileSelect = (file: File) => {
+  const handleFileSelect = (file) => {
     setSelectedFile(file);
     setExtractedData(null);
     toast({
