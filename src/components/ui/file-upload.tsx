@@ -4,7 +4,14 @@ import { cn } from '@/lib/utils';
 import { Upload, FileText, X } from 'lucide-react';
 import { Button } from './button';
 
-export const FileUpload = ({
+interface FileUploadProps {
+  onFileSelect: (file: File) => void;
+  selectedFile: File | null;
+  onRemoveFile: () => void;
+  className?: string;
+}
+
+export const FileUpload: React.FC<FileUploadProps> = ({
   onFileSelect,
   selectedFile,
   onRemoveFile,
@@ -13,7 +20,7 @@ export const FileUpload = ({
   const [dragActive, setDragActive] = useState(false);
 
   const onDrop = useCallback(
-    (acceptedFiles) => {
+    (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
         onFileSelect(acceptedFiles[0]);
       }

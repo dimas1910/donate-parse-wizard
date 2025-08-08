@@ -4,7 +4,13 @@ import { Badge } from './badge';
 import { CheckCircle, AlertCircle, FileText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export const DataPreview = ({
+interface DataPreviewProps {
+  data: Record<string, any>;
+  isLoading?: boolean;
+  className?: string;
+}
+
+export const DataPreview: React.FC<DataPreviewProps> = ({ 
   data, 
   isLoading = false, 
   className 
@@ -27,14 +33,14 @@ export const DataPreview = ({
     );
   }
 
-  const formatValue = (value) => {
+  const formatValue = (value: any): string => {
     if (value === null || value === undefined) return 'Não informado';
     if (typeof value === 'boolean') return value ? 'Sim' : 'Não';
     if (typeof value === 'object') return JSON.stringify(value, null, 2);
     return String(value);
   };
 
-  const getValueIcon = (value) => {
+  const getValueIcon = (value: any) => {
     if (value === null || value === undefined || value === '') {
       return <AlertCircle className="w-4 h-4 text-orange-500" />;
     }
